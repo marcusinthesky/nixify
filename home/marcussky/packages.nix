@@ -21,6 +21,16 @@
     # ── Python ─────────────────────────────────────────────────────────
     uv
 
+    # ── General ─────────────────────────────────────────────────────────
+    quarto
+    texliveFull
+    inkscape
+    gimp
+    kdenlive # Video editing
+    audacity # Audio editing
+    obs-studio # Screen recording & streaming
+    handbrake # Video transcoding
+
     # ── Go ─────────────────────────────────────────────────────────────
     go
     gopls

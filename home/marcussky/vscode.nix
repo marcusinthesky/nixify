@@ -53,6 +53,13 @@
       skellock.just
       streetsidesoftware.code-spell-checker
       yzhang.markdown-all-in-one
+      quarto.quarto
+
+      # ── MCP ────────────────────────────────────────────────────
+      io.github.github/github-mcp-server
+      io.github.ChromeDevTools/chrome-devtools-mcp
+      microsoft.playwright-mcp
+      io.github.github/github-mcp-server
     ];
   };
 }
