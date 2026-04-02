@@ -18,12 +18,21 @@
       url = "github:nix-community/vulnix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix = {
+      url = "github:nix-community/stylix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Bleeding-edge channel — used selectively (e.g. VS Code)
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, home-manager, git-hooks, vulnix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, git-hooks, vulnix, stylix, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
     in
     {
       # ════════════════════════════════════════════════════════════════
@@ -50,7 +59,10 @@
           ./modules/nixos/networking.nix
           ./modules/nixos/docker.nix
           ./modules/nixos/shell.nix
-          ./modules/nixos/fonts.nix
+          ./modules/nixos/stylix.nix
+
+          # ── Theming (Stylix) ────────────────────────────────────────
+          stylix.nixosModules.stylix
 
           # ── Home Manager as NixOS module ───────────────────────────
           home-manager.nixosModules.home-manager
@@ -61,6 +73,7 @@
               backupFileExtension = "hm-backup";
               extraSpecialArgs = {
                 userName = "marcussky";
+                inherit pkgs-unstable;
               };
               users.marcussky = import ./home/marcussky;
             };

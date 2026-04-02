@@ -2,6 +2,8 @@
 #
 # Entrypoint that imports all per-concern modules.
 # Each module is self-contained and can be toggled by removing the import.
+# Theming (colours, fonts, cursors, icons) is driven by Stylix via
+# theme.nix — per-app modules only set layout / behaviour.
 _:
 
 {
@@ -14,6 +16,7 @@ _:
     ./btop.nix
     ./vscode.nix
     ./packages.nix
+    ./gnome.nix
   ];
 
   home.stateVersion = "25.11";

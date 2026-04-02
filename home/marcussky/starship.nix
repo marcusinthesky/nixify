@@ -2,6 +2,7 @@
 #
 # Minimal, informative shell prompt with zsh integration.
 # Shows: directory, git, nix-shell, python, node, k8s, command duration.
+# Palette colours are injected by Stylix (base16).
 _:
 
 {
