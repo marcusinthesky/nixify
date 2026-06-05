@@ -5,11 +5,17 @@
 # Extensions are pinned from stable nixpkgs — no marketplace drift.
 { pkgs, pkgs-unstable, ... }:
 
+let
+  marketplaceExt = { publisher, name, version, sha256 }:
+    pkgs-unstable.vscode-utils.buildVscodeMarketplaceExtension {
+      mktplcRef = { inherit publisher name version sha256; };
+    };
+in
 {
   programs.vscode = {
     enable = true;
     package = pkgs-unstable.vscode;
-    profiles.default.extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs-unstable.vscode-extensions; [
       # ── Nix ──────────────────────────────────────────────────────────
       jnoortheen.nix-ide
 
@@ -53,6 +59,15 @@
       skellock.just
       streetsidesoftware.code-spell-checker
       yzhang.markdown-all-in-one
+
+      # ── Marketplace (not yet in nixpkgs) ─────────────────────────────
+      (marketplaceExt {
+        publisher = "mathematic";
+        name = "vscode-pdf";
+        version = "0.1.11";
+        sha256 = "0f9nkysxzmcifagqyq10rdblizr7zirryjngckj238ry0n564jc7";
+      })
+      foam.foam-vscode
     ];
   };
 }
