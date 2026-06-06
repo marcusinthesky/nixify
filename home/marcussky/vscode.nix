@@ -55,6 +55,9 @@ in
       tamasfe.even-better-toml
       esbenp.prettier-vscode
 
+      # ── Typst ────────────────────────────────────────────────────────
+      myriad-dreamin.tinymist
+
       # ── Utilities ────────────────────────────────────────────────────
       skellock.just
       streetsidesoftware.code-spell-checker
