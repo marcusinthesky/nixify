@@ -21,6 +21,9 @@
     # ── Python ─────────────────────────────────────────────────────────
     uv
 
+    # ── JavaScript / TypeScript ─────────────────────────────────────────
+    bun
+
     # ── General ─────────────────────────────────────────────────────────
     quarto
     typst
@@ -30,6 +33,7 @@
     audacity # Audio editing
     obs-studio # Screen recording & streaming
     handbrake # Video transcoding
+    ffmpeg
 
     # ── Go ─────────────────────────────────────────────────────────────
     go
@@ -51,6 +55,7 @@
     bat
     eza
     jq
+    yq
     tree
     htop
     fastfetch
@@ -58,6 +63,18 @@
     wget
     curl
     unzip
+    zip
+    rsync
+    tmux
+    imagemagick
+    lsof
+    strace
+    neovim
+
+    # ── Build toolchain ─────────────────────────────────────────────────
+    gnumake
+    gcc
+    binutils
 
     # ── Networking ─────────────────────────────────────────────────────
     openssh
