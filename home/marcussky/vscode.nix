@@ -77,13 +77,13 @@ in
         publisher = "openai";
         name = "chatgpt";
         version = "26.5616.32156";
-        sha256 = "0ag8vabylw04h3wd45wd8mh8dc2h4b3pvcsikjahd6lviqrfq4lw";
+        sha256 = "sha256-EEc5Ay5soR0Z4X8Q1dSi2D9OlT4np9ftwpewM3eWehI=";
       })
       (marketplaceExt {
         publisher = "sst-dev";
         name = "opencode";
         version = "0.0.13";
-        sha256 = "14yrcyvx5s7i350104jdw88901nkvz86dqqw0klabswv6k559csc";
+        sha256 = "1m301j2qbym3j2qnck76jyxakca3h1qiybc2r7wy7z11m98mg9z9";
       })
       foam.foam-vscode
     ];
