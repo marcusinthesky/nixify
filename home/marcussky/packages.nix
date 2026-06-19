@@ -69,7 +69,15 @@
     imagemagick
     lsof
     strace
+
+    # ── Harneses ────────────────────────────────────────────────
     neovim
+    zed-editor          # Zed editor
+    code-cursor         # Cursor AI editor
+    antigravity         # Antigravity agentic IDE
+    opencode            # Terminal AI coding agent
+    claude-code         # Anthropic terminal coding agent
+    codex               # OpenAI terminal coding agent
 
     # ── Build toolchain ─────────────────────────────────────────────────
     gnumake

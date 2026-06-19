@@ -38,6 +38,9 @@ in
       github.vscode-pull-request-github
       github.vscode-github-actions
 
+      # ── AI agents ───────────────────────────────────────────────────
+      anthropic.claude-code
+
       # ── Remote development ───────────────────────────────────────────
       ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
@@ -69,6 +72,18 @@ in
         name = "vscode-pdf";
         version = "0.1.11";
         sha256 = "0f9nkysxzmcifagqyq10rdblizr7zirryjngckj238ry0n564jc7";
+      })
+      (marketplaceExt {
+        publisher = "openai";
+        name = "chatgpt";
+        version = "26.5616.32156";
+        sha256 = "0ag8vabylw04h3wd45wd8mh8dc2h4b3pvcsikjahd6lviqrfq4lw";
+      })
+      (marketplaceExt {
+        publisher = "sst-dev";
+        name = "opencode";
+        version = "0.0.13";
+        sha256 = "14yrcyvx5s7i350104jdw88901nkvz86dqqw0klabswv6k559csc";
       })
       foam.foam-vscode
     ];
