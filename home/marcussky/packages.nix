@@ -2,7 +2,7 @@
 #
 # CLI tools, development toolchains, and Kubernetes utilities.
 # Grouped by domain for easy scanning.
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   home.packages = with pkgs; [
@@ -73,11 +73,12 @@
     # ── Harneses ────────────────────────────────────────────────
     neovim
     zed-editor          # Zed editor
-    code-cursor         # Cursor AI editor
-    antigravity         # Antigravity agentic IDE
-    opencode            # Terminal AI coding agent
-    claude-code         # Anthropic terminal coding agent
-    codex               # OpenAI terminal coding agent
+    pkgs-unstable.code-cursor         # Cursor AI editor (unstable for latest)
+    pkgs-unstable.antigravity         # Antigravity agentic IDE
+    pkgs-unstable.opencode            # Terminal AI coding agent
+    pkgs-unstable.claude-code         # Anthropic terminal coding agent
+    pkgs-unstable.codex               # OpenAI terminal coding agent
+    pkgs-unstable.pi-coding-agent     # Pi coding agent
 
     # ── Build toolchain ─────────────────────────────────────────────────
     gnumake
