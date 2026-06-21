@@ -40,6 +40,12 @@ in
 
       # ── AI agents ───────────────────────────────────────────────────
       anthropic.claude-code
+      (marketplaceExt {
+        publisher = "omercnet";
+        name = "vscode-acp";
+        version = "1.4.0";
+        sha256 = "sha256-xEdi/ekXmcMPYs/gOShrbLOrrlpB8tsx5uHbBYTks/g=";
+      })
 
       # ── Remote development ───────────────────────────────────────────
       ms-vscode-remote.remote-containers
