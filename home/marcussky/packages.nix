@@ -92,7 +92,9 @@ in
     pkgs-unstable.claude-code # Anthropic terminal coding agent
     pkgs-unstable.codex # OpenAI terminal coding agent
     pkgs-unstable.pi-coding-agent # Pi coding agent
+    pkgs-unstable.kilocode-cli # Kilo code terminal coding agent
     superset-desktop # Superset Desktop agentic coding workspace
+
 
     # ── Build toolchain ─────────────────────────────────────────────────
     gnumake
