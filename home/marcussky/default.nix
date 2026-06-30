@@ -17,6 +17,7 @@ _:
     ./vscode.nix
     ./packages.nix
     ./gnome.nix
+    ./zed.nix
   ];
 
   home.stateVersion = "25.11";

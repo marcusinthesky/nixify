@@ -26,9 +26,12 @@
 
     # Bleeding-edge channel — used selectively (e.g. VS Code)
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    kilo.url = "github:Kilo-Org/kilocode";
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, git-hooks, vulnix, stylix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, git-hooks, vulnix, stylix, kilo, zed-extensions, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -53,6 +56,9 @@
         };
 
         modules = [
+          # ── Zed extensions overlay ────────────────────────────────────
+          { nixpkgs.overlays = [ zed-extensions.overlays.default ]; }
+
           # ── Host-specific (boot, LUKS, hardware) ───────────────────
           ./hosts/nixos
 
@@ -74,9 +80,13 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "hm-backup";
+              sharedModules = [
+                zed-extensions.homeManagerModules.default
+              ];
               extraSpecialArgs = {
                 userName = "marcussky";
                 inherit pkgs-unstable;
+                kilo-pkg = kilo.packages.${system}.kilo;
               };
               users.marcussky = import ./home/marcussky;
             };

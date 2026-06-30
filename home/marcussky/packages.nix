@@ -2,7 +2,7 @@
 #
 # CLI tools, development toolchains, and Kubernetes utilities.
 # Grouped by domain for easy scanning.
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, pkgs-unstable, kilo-pkg, ... }:
 
 let
   # Superset Desktop — agentic coding workspace (Electron AppImage).
@@ -18,100 +18,125 @@ let
   };
 in
 {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     # ── Kubernetes ─────────────────────────────────────────────────────
-    kubectl
-    minikube
-    kubernetes-helm
-    k9s
+    kubectl          # K8s CLI
+    minikube         # Local K8s cluster
+    kubernetes-helm  # K8s package manager
+    k9s              # K8s TUI
+    kube-linter      # K8s manifest linter
+    kustomize        # K8s manifest overlays
+    skaffold         # K8s build/push/deploy pipeline
+    ctlptl           # Declarative local cluster setup
 
     # ── Containers ─────────────────────────────────────────────────────
-    docker-compose
+    docker-compose   # Multi-container Docker
 
-    # ── Cloud / Infra ──────────────────────────────────────────────────
-    terraform
+    # ── Infrastructure ─────────────────────────────────────────────────
+    terraform        # Infrastructure as code
+    opentofu         # Open-source Terraform fork
+    terragrunt       # Terraform/OpenTofu orchestrator
+    tflint           # Terraform linter
+    terraform-ls     # Terraform/HCL LSP
 
-    # ── Python ─────────────────────────────────────────────────────────
-    uv
+    # ── Build toolchain ────────────────────────────────────────────────
+    gnumake          # Build automation
+    gcc              # C/C++ compiler
+    binutils         # Linker & tools
+    just             # Command runner
 
-    # ── JavaScript / TypeScript ─────────────────────────────────────────
-    bun
-
-    # ── General ─────────────────────────────────────────────────────────
-    quarto
-    typst
-    texliveFull
-    inkscape
-    gimp
-    audacity # Audio editing
-    obs-studio # Screen recording & streaming
-    handbrake # Video transcoding
-    ffmpeg
+    # ── Language servers ───────────────────────────────────────────────
+    typescript-language-server  # TS/JS LSP
+    nixd             # Nix LSP
+    yaml-language-server        # YAML LSP
+    marksman         # Markdown LSP
+    tombi            # TOML LSP
+    tinymist         # Typst LSP
+    ty               # Python type checker & LSP
+    lean4            # Lean 4 language + LSP
 
     # ── Go ─────────────────────────────────────────────────────────────
-    go
-    gopls
-    delve
+    go               # Go compiler
+    gopls            # Go language server
+    delve            # Go debugger
 
     # ── Rust ───────────────────────────────────────────────────────────
-    cargo
-    rustc
-    clippy
-    rustfmt
+    cargo            # Rust package manager
+    rustc            # Rust compiler
+    clippy           # Rust linter
+    rustfmt          # Rust formatter
+
+    # ── Python ─────────────────────────────────────────────────────────
+    uv               # Python package manager
+
+    # ── JavaScript / TypeScript ────────────────────────────────────────
+    bun              # JS runtime & bundler
 
     # ── Theorem proving ────────────────────────────────────────────────
-    elan
-
-    # ── Shell utilities ────────────────────────────────────────────────
-    ripgrep
-    fd
-    bat
-    eza
-    jq
-    yq
-    tree
-    htop
-    fastfetch
-    just
-    wget
-    curl
-    unzip
-    zip
-    rsync
-    tmux
-    imagemagick
-    lsof
-    strace
-
-    # ── Harneses ────────────────────────────────────────────────
-    neovim
-    zed-editor # Zed editor
-    pkgs-unstable.code-cursor # Cursor AI editor (unstable for latest)
-    pkgs-unstable.antigravity # Antigravity agentic IDE
-    pkgs-unstable.opencode # Terminal AI coding agent
-    pkgs-unstable.claude-code # Anthropic terminal coding agent
-    pkgs-unstable.codex # OpenAI terminal coding agent
-    pkgs-unstable.pi-coding-agent # Pi coding agent
-    pkgs-unstable.kilocode-cli # Kilo code terminal coding agent
-    superset-desktop # Superset Desktop agentic coding workspace
-
-
-    # ── Build toolchain ─────────────────────────────────────────────────
-    gnumake
-    gcc
-    binutils
-
-    # ── Networking ─────────────────────────────────────────────────────
-    openssh
-
-    # ── Browsers ───────────────────────────────────────────────────────
-    google-chrome
-    obsidian
-
+    elan             # Lean toolchain manager
 
     # ── Nix tooling ────────────────────────────────────────────────────
-    nixpkgs-fmt
-    statix
-    deadnix
+    nixfmt-rfc-style # Official Nix formatter (RFC 166)
+    nixpkgs-fmt      # Nix formatter
+    statix           # Nix anti-pattern linter
+    deadnix          # Unused Nix code detector
+
+    # ── Editors & IDEs ─────────────────────────────────────────────────
+    neovim           # Terminal editor
+    zed-editor       # Zed editor
+    pkgs-unstable.code-cursor      # Cursor AI editor
+    pkgs-unstable.antigravity      # Antigravity agentic IDE
+    pkgs-unstable.opencode         # Terminal AI coding agent
+    pkgs-unstable.claude-code      # Anthropic terminal coding agent
+    pkgs-unstable.codex            # OpenAI terminal coding agent
+    pkgs-unstable.pi-coding-agent  # Pi coding agent
+    superset-desktop               # Superset Desktop agentic workspace
+
+    # ── Document prep ──────────────────────────────────────────────────
+    quarto           # Scientific publishing
+    typst            # Markup typesetter
+    texliveFull      # LaTeX distribution
+
+    # ── Media ──────────────────────────────────────────────────────────
+    gimp             # Image editing
+    inkscape         # Vector graphics
+    audacity         # Audio editing
+    obs-studio       # Screen recording & streaming
+    handbrake        # Video transcoding
+    ffmpeg           # Media processing
+
+    # ── Text & file tools ──────────────────────────────────────────────
+    ripgrep          # Fast grep
+    fd               # Fast find
+    bat              # Cat with syntax highlighting
+    eza              # Modern ls
+    jq               # JSON processor
+    yq               # YAML processor
+    tree             # Directory tree
+    tmux             # Terminal multiplexer
+    imagemagick      # Image manipulation
+
+    # ── System tools ───────────────────────────────────────────────────
+    htop             # Process monitor
+    fastfetch        # System info
+    lsof             # Open file inspector
+    strace           # Syscall tracer
+
+    # ── Networking ─────────────────────────────────────────────────────
+    openssh          # SSH client
+    wget             # HTTP downloader
+    curl             # URL transfer
+    rsync            # File sync
+
+    # ── Archiving ──────────────────────────────────────────────────────
+    unzip            # Archive extractor
+    zip              # Archive creator
+
+    # ── Desktop apps ───────────────────────────────────────────────────
+    google-chrome    # Web browser
+    obsidian         # Note-taking
+  ]) ++ [
+    # ── From extraSpecialArgs (not in nixpkgs) ────────────────────────
+    kilo-pkg         # Kilo code terminal coding agent (upstream flake)
   ];
 }
