@@ -3,7 +3,7 @@
 # Declarative VS Code with pre-installed extensions.
 # The VS Code binary tracks nixpkgs-unstable for bleeding-edge updates.
 # Extensions are pinned from stable nixpkgs — no marketplace drift.
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs-unstable, ... }:
 
 let
   marketplaceExt = { publisher, name, version, sha256 }:
@@ -83,7 +83,7 @@ in
         publisher = "openai";
         name = "chatgpt";
         version = "26.5616.32156";
-        sha256 = "sha256-EEc5Ay5soR0Z4X8Q1dSi2D9OlT4np9ftwpewM3eWehI=";
+        sha256 = "sha256-hXXc/GkJE4ONT/xKBKTY5sFsadH2wIFkgNpB1UGNHjs=";
       })
       (marketplaceExt {
         publisher = "sst-dev";

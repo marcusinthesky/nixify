@@ -32,6 +32,9 @@ _:
     };
   };
 
+  # Qt — use Adwaita theming under GNOME (the old 'gnome' value is deprecated)
+  qt.platformTheme.name = "adwaita";
+
   # RealtimeKit — lets PipeWire acquire realtime scheduling
   security.rtkit.enable = true;
 }
