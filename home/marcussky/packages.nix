@@ -19,6 +19,10 @@ let
 in
 {
   home.packages = with pkgs; [
+    # Cloud SDK & Registries
+    google-cloud-sdk # gcloud cli
+    dvc-with-remotes # DVC with remote storage support
+
     # Kubernetes
     kubectl # K8s CLI
     minikube # Local K8s cluster
