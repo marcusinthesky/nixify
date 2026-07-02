@@ -2,10 +2,10 @@
   description = "nixify — declarative NixOS workstation configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -20,15 +20,17 @@
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-25.11";
+      url = "github:nix-community/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Bleeding-edge channel — used selectively (e.g. VS Code)
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    zed-extensions.url = "github:DuskSystems/nix-zed-extensions";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, git-hooks, vulnix, stylix, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, git-hooks, vulnix, stylix, zed-extensions, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -53,6 +55,9 @@
         };
 
         modules = [
+          # ── Zed extensions overlay ────────────────────────────────────
+          { nixpkgs.overlays = [ zed-extensions.overlays.default ]; }
+
           # ── Host-specific (boot, LUKS, hardware) ───────────────────
           ./hosts/nixos
 
@@ -74,6 +79,9 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               backupFileExtension = "hm-backup";
+              sharedModules = [
+                zed-extensions.homeManagerModules.default
+              ];
               extraSpecialArgs = {
                 userName = "marcussky";
                 inherit pkgs-unstable;

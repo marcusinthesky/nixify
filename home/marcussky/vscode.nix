@@ -3,7 +3,7 @@
 # Declarative VS Code with pre-installed extensions.
 # The VS Code binary tracks nixpkgs-unstable for bleeding-edge updates.
 # Extensions are pinned from stable nixpkgs — no marketplace drift.
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs-unstable, ... }:
 
 let
   marketplaceExt = { publisher, name, version, sha256 }:
@@ -38,6 +38,15 @@ in
       github.vscode-pull-request-github
       github.vscode-github-actions
 
+      # ── AI agents ───────────────────────────────────────────────────
+      anthropic.claude-code
+      (marketplaceExt {
+        publisher = "omercnet";
+        name = "vscode-acp";
+        version = "1.4.0";
+        sha256 = "sha256-xEdi/ekXmcMPYs/gOShrbLOrrlpB8tsx5uHbBYTks/g=";
+      })
+
       # ── Remote development ───────────────────────────────────────────
       ms-vscode-remote.remote-containers
       ms-vscode-remote.remote-ssh
@@ -69,6 +78,18 @@ in
         name = "vscode-pdf";
         version = "0.1.11";
         sha256 = "0f9nkysxzmcifagqyq10rdblizr7zirryjngckj238ry0n564jc7";
+      })
+      (marketplaceExt {
+        publisher = "openai";
+        name = "chatgpt";
+        version = "26.5616.32156";
+        sha256 = "sha256-hXXc/GkJE4ONT/xKBKTY5sFsadH2wIFkgNpB1UGNHjs=";
+      })
+      (marketplaceExt {
+        publisher = "sst-dev";
+        name = "opencode";
+        version = "0.0.13";
+        sha256 = "1m301j2qbym3j2qnck76jyxakca3h1qiybc2r7wy7z11m98mg9z9";
       })
       foam.foam-vscode
     ];

@@ -1,5 +1,9 @@
 # nixify
 
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fproject-zot%2Fzot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fproject-zot%2Fzot?ref=badge_shield)
+
+![cover](cover.png)
+
 Declarative NixOS workstation configuration managed with [Nix Flakes](https://wiki.nixos.org/wiki/Flakes) and [Home Manager](https://github.com/nix-community/home-manager).
 
 ## Structure

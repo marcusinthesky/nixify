@@ -63,5 +63,10 @@ in
 
     # ── Opacity ────────────────────────────────────────────────────────
     inherit (theme) opacity;
+
+    # ── Qt ─────────────────────────────────────────────────────────────
+    # Disable Stylix Qt target — GNOME uses Adwaita for Qt theming natively.
+    # Stylix only supports 'qtct' which is irrelevant under GNOME.
+    targets.qt.enable = false;
   };
 }
